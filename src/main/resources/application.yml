@@ -1,0 +1,58 @@
+# Valores locais (spec 001, plan §2). Em produção, tudo isto vem de variáveis de ambiente.
+spring:
+  application:
+    name: receiver
+  threads:
+    virtual:
+      enabled: true          # MVC + virtual threads: aguardar o ack do Kafka não ocupa thread de plataforma
+  main:
+    banner-mode: off
+
+server:
+  port: 8081
+
+receiver:
+  # Origens autorizadas (FR-007a). Em produção, a origem vem do certificado mTLS [DOC]
+  clients: pix-core,ted-core,boleto-core,card-core
+  # Por origem e por instância; o limite global aproximado é este valor x número de instâncias
+  rate-limit-per-second: ${RECEIVER_RATE_LIMIT_PER_SECOND:20000}
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic: transaction-commands.v1
+    publish-timeout: 2500ms   # um pouco acima do delivery.timeout.ms (2 s) do produtor
+  redis:
+    host: localhost
+    port: 6379
+    command-timeout: 5ms      # acima disso o Redis é tratado como indisponível (fail-open)
+    pending-ttl: 5s           # reserva sem confirmação; precisa ser maior que o delivery.timeout do Kafka (2 s)
+    done-ttl: 600s            # janela em que reenvios viram DUPLICATE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true        # /actuator/health/liveness e /readiness (constituição VII)
+      show-components: always
+      group:
+        readiness:
+          # Pronto = produtor Kafka com metadados. O Redis fica de fora: o receiver é fail-open (plan 001 §5)
+          include: readinessState,kafkaProducer
+  tracing:
+    sampling:
+      probability: 1.0       # local: tudo; em produção a amostragem é reduzida
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          enabled: false     # sem coletor OTLP no ambiente local
+  otlp:
+    metrics:
+      export:
+        enabled: false
+  metrics:
+    tags:
+      service: receiver
