@@ -23,7 +23,6 @@ public class RequestBodyReader {
         return maxBytes;
     }
 
-    /** Lê no máximo o limite mais um byte; vazio se o corpo passou do limite. */
     public Optional<byte[]> read(HttpServletRequest request) throws IOException {
         if (request.getContentLengthLong() > maxBytes) {
             return Optional.empty();

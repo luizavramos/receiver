@@ -35,7 +35,6 @@ public class ReceiverConfig {
         return new AllowedClients(Set.copyOf(properties.clients()));
     }
 
-    /** Um objeto só: métricas das requisições (adapter REST) e dos eventos do Redis (guard). */
     @Bean
     ReceiverMetrics receiverMetrics(MeterRegistry registry) {
         return new ReceiverMetrics(registry);
@@ -61,7 +60,6 @@ public class ReceiverConfig {
         return new TransactionPresenter();
     }
 
-    /** O span ativo, lido pelo Micrometer Tracing: ele já leu o {@code traceparent} da requisição ou gerou um. */
     @Bean
     TraceContextResolver traceContextResolver(ObjectProvider<Tracer> tracer) {
         return new TraceContextResolver(() -> {

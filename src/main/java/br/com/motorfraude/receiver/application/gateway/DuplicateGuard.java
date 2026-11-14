@@ -24,9 +24,7 @@ public interface DuplicateGuard {
 
     Reservation tryReserve(String transactionId);
 
-    /** Publicação confirmada: PENDING para DONE. Melhor esforço. */
     void confirm(String transactionId);
 
-    /** Publicação falhou: apaga a reserva para o retry não ser barrado. Melhor esforço. */
     void release(String transactionId);
 }

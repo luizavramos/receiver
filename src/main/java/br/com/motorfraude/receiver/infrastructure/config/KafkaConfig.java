@@ -20,11 +20,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KafkaConfig {
 
-    /**
-     * Garantias do plan §2: idempotente, {@code acks=all}, lote curto e compressão. O prazo de entrega (2 s) é maior que
-     * {@code linger.ms + request.timeout.ms}, como o Kafka exige. {@code max.block.ms} limita a espera por metadata
-     * quando o broker está fora: a requisição nunca fica presa por mais que isso.
-     */
     public static Map<String, Object> producerProperties(String bootstrapServers) {
         var props = new HashMap<String, Object>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -54,7 +49,6 @@ public class KafkaConfig {
         return new TimedCommandPublisher(publisher, registry);
     }
 
-    /** Entra no grupo de readiness (application.yml) com o nome {@code kafkaProducer}. */
     @Bean
     KafkaProducerHealthIndicator kafkaProducerHealthIndicator(Producer<String, byte[]> producer, ReceiverProperties properties) {
         return new KafkaProducerHealthIndicator(producer, properties.kafka().topic());

@@ -41,7 +41,6 @@ public final class ResilientRedisConnection implements AutoCloseable {
         this.uri = uri;
     }
 
-    /** @param commandTimeout prazo de cada comando; o valor da spec é 5 ms */
     public static ResilientRedisConnection create(String host, int port, Duration commandTimeout) {
         var uri = RedisURI.builder().withHost(host).withPort(port).withTimeout(commandTimeout).build();
         var client = RedisClient.create();
@@ -70,7 +69,6 @@ public final class ResilientRedisConnection implements AutoCloseable {
         }
     }
 
-    /** @return os comandos, ou nulo se ainda não houve conexão */
     public RedisCommands<String, String> commands() {
         return commands;
     }

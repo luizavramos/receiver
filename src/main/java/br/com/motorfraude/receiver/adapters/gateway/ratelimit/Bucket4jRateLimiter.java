@@ -24,7 +24,6 @@ public class Bucket4jRateLimiter implements RateLimiter {
         this(permitsPerSecond, TimeMeter.SYSTEM_NANOTIME);
     }
 
-    /** Construtor para testes: o relógio é injetado, para não dormir. */
     Bucket4jRateLimiter(long permitsPerSecond, TimeMeter timeMeter) {
         if (permitsPerSecond <= 0) {
             throw new IllegalArgumentException("o limite por segundo deve ser positivo: " + permitsPerSecond);

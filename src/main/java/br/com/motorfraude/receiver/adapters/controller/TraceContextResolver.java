@@ -12,7 +12,6 @@ public class TraceContextResolver {
 
     private final Supplier<TraceParent> currentSpan;
 
-    /** @param currentSpan devolve o span ativo no formato W3C, ou nulo se não houver */
     public TraceContextResolver(Supplier<TraceParent> currentSpan) {
         this.currentSpan = currentSpan;
     }

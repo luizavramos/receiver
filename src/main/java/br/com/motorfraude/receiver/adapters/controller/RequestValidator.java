@@ -9,7 +9,6 @@ public class RequestValidator {
 
     static final String SCHEMA = "evaluate-transaction.v1";
 
-    /** @return as violações, uma por campo; vazio se o corpo respeita o contrato */
     public List<String> validate(JsonNode body) {
         return Schemas.validate(SCHEMA, body).errors();
     }

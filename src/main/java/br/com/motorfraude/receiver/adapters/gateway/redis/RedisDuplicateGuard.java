@@ -28,7 +28,6 @@ public class RedisDuplicateGuard implements DuplicateGuard {
     public interface Listener {
         Listener NONE = new Listener() {};
 
-        /** O Redis não respondeu; {@code reason} é {@code timeout} ou {@code erro}. */
         default void failOpen(String reason) {}
 
         default void confirmFailed() {}

@@ -32,7 +32,6 @@ public class ReceiveTransactionUseCase {
         this.publisher = publisher;
     }
 
-    /** @return false se a origem excedeu o limite (responder 429) */
     public boolean admit(String clientId) {
         return rateLimiter.tryAcquire(clientId);
     }

@@ -27,7 +27,6 @@ final class ProblemDetails {
         return new Reply(outcome, ResponseEntity.status(status).contentType(MediaType.APPLICATION_PROBLEM_JSON).body(body));
     }
 
-    /** Erro que a origem resolve tentando de novo: leva {@code Retry-After: 1}. */
     static Reply retryLater(Outcome outcome, HttpStatus status, String title, String detail) {
         var body = of(outcome, status, title, detail, List.of()).response().getBody();
         return new Reply(outcome, ResponseEntity.status(status).contentType(MediaType.APPLICATION_PROBLEM_JSON)

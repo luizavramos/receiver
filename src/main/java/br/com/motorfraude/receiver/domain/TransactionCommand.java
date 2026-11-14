@@ -23,7 +23,6 @@ public record TransactionCommand(EvaluateTransaction payload) {
         Objects.requireNonNull(payload, "payload");
     }
 
-    /** @throws InvalidTransactionException com todas as violações encontradas */
     public static TransactionCommand of(EvaluateTransaction payload, Instant now) {
         Objects.requireNonNull(payload, "payload");
         Objects.requireNonNull(now, "now");
@@ -48,7 +47,6 @@ public record TransactionCommand(EvaluateTransaction payload) {
         return payload.transactionId();
     }
 
-    /** Chave da mensagem Kafka: mantém a ordem por conta. */
     public String accountId() {
         return payload.accountId();
     }
