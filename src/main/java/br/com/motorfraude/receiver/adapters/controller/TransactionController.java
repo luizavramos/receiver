@@ -13,15 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Entrada HTTP do receiver (spec 001, plan §4). Só coordena a ordem das checagens: origem → limite de taxa → corpo
- * (até 16 KB) → contrato e invariantes → caso de uso. O limite vem antes de ler o corpo: lixo também é limitado. Cada
- * etapa mora numa classe própria; todo desfecho é reportado às métricas.
- */
 @RestController
 public class TransactionController {
 
-    /** Label usado nas métricas para qualquer origem que não esteja na lista: evita cardinalidade ilimitada. */
     public static final String UNKNOWN_CLIENT = "unknown";
 
     private final ReceiveTransactionUseCase useCase;

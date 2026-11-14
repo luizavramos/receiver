@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Optional;
 
-/** Lê o corpo da requisição até um limite: nunca carrega na memória um corpo maior do que o permitido. */
 public class RequestBodyReader {
 
     public static final int DEFAULT_MAX_BYTES = 16 * 1024;

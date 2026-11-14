@@ -13,10 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-/**
- * H4 e T119 com o serviço Spring inteiro (sem Kafka nem Redis: só chegam requisições que são barradas antes): limite
- * por origem, isolamento entre origens e métricas expostas em /actuator/prometheus.
- */
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = "receiver.rate-limit-per-second=3")
@@ -58,7 +54,6 @@ class RateLimitAndMetricsTest {
         var otherOrigin = evaluate("ted-core", "{}");
         var intruder = evaluate("intruso-qualquer", "{}");
 
-        // com capacidade 3, as 3 primeiras sempre passam pelo limite (e caem na validação: 400)
         assertThat(statuses.subList(0, 3)).containsOnly(400);
         assertThat(statuses).contains(429);
         assertThat(lastLimited.headers().firstValue("Retry-After")).contains("1");

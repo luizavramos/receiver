@@ -2,10 +2,6 @@ package br.com.motorfraude.receiver.adapters.controller;
 
 import java.util.Set;
 
-/**
- * Origens autorizadas a chamar o receiver (FR-007a). Localmente identificadas por {@code X-Client-Id}; em produção, pelo
- * certificado mTLS. A lista fechada também limita a cardinalidade dos labels de métrica.
- */
 public final class AllowedClients {
 
     private final Set<String> ids;

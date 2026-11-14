@@ -10,10 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T117 — limite por origem, em memória, com relógio controlado (sem dormir nos testes). */
 class Bucket4jRateLimiterTest {
 
-    /** Relógio de teste: o tempo só anda quando o teste manda. */
     private static final class ManualMeter implements TimeMeter {
         private final AtomicLong nanos = new AtomicLong();
 

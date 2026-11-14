@@ -7,7 +7,6 @@ import br.com.motorfraude.receiver.domain.TransactionCommand;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Publicador em memória: registra o que "foi para o Kafka" e pode ser programado para falhar. */
 public class FakeCommandPublisher implements CommandPublisher {
 
     public boolean failing;

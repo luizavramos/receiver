@@ -7,10 +7,6 @@ import br.com.motorfraude.receiver.domain.TransactionCommand;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
 
-/**
- * Mede o tempo da publicação (do envio ao ack do Kafka), com sucesso ou falha, em {@code receiver_publish_seconds}. É o
- * principal componente da latência do receiver, então o histograma tem buckets para o p99 do painel.
- */
 public class TimedCommandPublisher implements CommandPublisher {
 
     private final CommandPublisher delegate;

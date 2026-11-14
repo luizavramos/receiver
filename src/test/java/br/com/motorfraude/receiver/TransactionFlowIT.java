@@ -22,10 +22,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.kafka.KafkaContainer;
 
-/**
- * Checkpoint da Fase 3: o serviço inteiro (HTTP → validação → caso de uso → Kafka real) aceita e publica. Cobre H1 e H2
- * de ponta a ponta e a propagação do traceparent da requisição para o header Kafka (T112).
- */
 @Testcontainers
 @SpringBootTest(classes = ReceiverApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TransactionFlowIT {

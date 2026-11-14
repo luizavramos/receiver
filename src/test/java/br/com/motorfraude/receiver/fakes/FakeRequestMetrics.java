@@ -5,7 +5,6 @@ import br.com.motorfraude.receiver.adapters.controller.RequestMetrics;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Registra os desfechos que o controller reportaria às métricas. */
 public class FakeRequestMetrics implements RequestMetrics {
 
     public record Recorded(Outcome outcome, String client) {}

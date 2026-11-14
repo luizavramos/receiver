@@ -19,7 +19,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T119 — os contadores e o histograma do plan §5 aumentam quando o evento correspondente acontece. */
 class ReceiverMetricsTest {
 
     private final SimpleMeterRegistry registry = new SimpleMeterRegistry();

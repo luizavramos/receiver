@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-/** Traduz cada desfecho do recebimento em resposta HTTP e no {@link Outcome} da métrica. Não decide nada, só apresenta. */
 public class TransactionPresenter {
 
     public Reply respond(ReceiveResult result) {

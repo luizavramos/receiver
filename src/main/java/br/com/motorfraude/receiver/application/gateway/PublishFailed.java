@@ -1,6 +1,5 @@
 package br.com.motorfraude.receiver.application.gateway;
 
-/** O Kafka não confirmou a gravação. A transação NÃO foi aceita. */
 public class PublishFailed extends Exception {
 
     public PublishFailed(String message, Throwable cause) {

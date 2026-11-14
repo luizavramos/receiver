@@ -4,7 +4,6 @@ import br.com.motorfraude.receiver.application.gateway.DuplicateGuard;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Guarda em memória com resposta programável e registro das chamadas. */
 public class FakeDuplicateGuard implements DuplicateGuard {
 
     public Reservation nextReservation = Reservation.RESERVED;

@@ -30,10 +30,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.kafka.KafkaContainer;
 
-/**
- * T115 e T116 — aceite de H3 e H5 com o serviço inteiro, Kafka e Redis reais. "Parar" Kafka ou Redis é
- * {@code docker pause}: o container fica de pé, mas não responde (o pior caso: lento, não caído).
- */
 @Testcontainers
 @SpringBootTest(classes = ReceiverApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AcceptanceIT {
@@ -49,7 +45,6 @@ class AcceptanceIT {
         registry.add("receiver.kafka.bootstrap-servers", KAFKA::getBootstrapServers);
         registry.add("receiver.redis.host", REDIS::getHost);
         registry.add("receiver.redis.port", () -> REDIS.getMappedPort(6379));
-        // Folga para o aquecimento da JVM nos testes; o valor de 5 ms da spec é provado em RedisDuplicateGuardIT
         registry.add("receiver.redis.command-timeout", () -> "300ms");
     }
 
@@ -166,13 +161,9 @@ class AcceptanceIT {
         assertThat(whileDown.headers().firstValue("Retry-After")).contains("1");
         assertThat(afterRecovery.statusCode()).isEqualTo(202);
         assertThat(afterRecovery.body()).contains("\"status\":\"ACCEPTED\"");
-        // 503 significa "não confirmado", não "não gravado": com o broker pausado os bytes já estavam no socket e ele
-        // grava ao voltar. Então a mensagem da tentativa que deu 503 pode aparecer, além da do retry (plan 001 §8).
-        // Nunca pode faltar a do retry aceito (SC-002) e o motor resolve a duplicata (ADR-10).
         assertThat(publishedCount(id)).isBetween(1L, 2L);
     }
 
-    /** O Kafka precisa de alguns segundos para o produtor voltar a enxergar o broker; o cliente real também reenvia. */
     private HttpResponse<String> retryUntilNot503(String id) throws Exception {
         var deadline = System.nanoTime() + Duration.ofSeconds(30).toNanos();
         HttpResponse<String> response = post(id);
@@ -193,7 +184,7 @@ class AcceptanceIT {
         pause(KAFKA);
         try (var pool = Executors.newVirtualThreadPerTaskExecutor()) {
             first = pool.submit(() -> post(id));
-            Thread.sleep(500); // a primeira já reservou (PENDING) e está esperando o ack
+            Thread.sleep(500);
             inFlight = post(id);
             first.get();
         } finally {

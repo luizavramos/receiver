@@ -29,7 +29,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-/** T108 — status e Problem Details (RFC 9457) de cada cenário de H1 e H2, sem subir Spring. */
 class TransactionControllerTest {
 
     private static final String PATH = "/v1/transactions:evaluate";
@@ -93,8 +92,6 @@ class TransactionControllerTest {
                 .andExpect(jsonPath("$.title").isNotEmpty());
     }
 
-    // ---------- H1 ----------
-
     @Test
     @DisplayName("H1: transação válida → 202 ACCEPTED e o comando é publicado")
     void aceita() throws Exception {
@@ -130,8 +127,6 @@ class TransactionControllerTest {
 
         assertThat(publisher.traces.get(0).traceparent()).isEqualTo(traceparent);
     }
-
-    // ---------- H2 ----------
 
     @Test
     @DisplayName("H2.1: corpo sem transactionId → 400 Problem Details apontando o campo, nada publicado")
@@ -217,8 +212,6 @@ class TransactionControllerTest {
         assertThat(publisher.published).isEmpty();
     }
 
-    // ---------- limites e origem ----------
-
     @Test
     @DisplayName("corpo acima de 16 KB → 413 Problem Details, nada publicado")
     void corpoGrande() throws Exception {
@@ -257,8 +250,6 @@ class TransactionControllerTest {
         assertThat(rateLimiter.asked).isEmpty();
     }
 
-    // ---------- H4 / H5 ----------
-
     @Test
     @DisplayName("H4: origem acima do limite → 429 com Retry-After")
     void rateLimited() throws Exception {
@@ -290,20 +281,20 @@ class TransactionControllerTest {
     @Test
     @DisplayName("T119: o controller reporta o desfecho de cada requisição; origem desconhecida vira o label 'unknown'")
     void metricasPorDesfecho() throws Exception {
-        send(validBody());                                                       // ACCEPTED
+        send(validBody());
         guard.nextReservation = Reservation.ALREADY_SEEN;
-        send(validBody());                                                       // DUPLICATE
+        send(validBody());
         guard.nextReservation = Reservation.IN_FLIGHT;
-        send(validBody());                                                       // IN_FLIGHT
+        send(validBody());
         guard.nextReservation = Reservation.RESERVED;
         publisher.failing = true;
-        send(validBody());                                                       // UNAVAILABLE
+        send(validBody());
         publisher.failing = false;
-        send("{ isto nao e json");                                               // REJECTED
-        send("{\"x\":\"" + "a".repeat(16 * 1024) + "\"}");                       // TOO_LARGE
-        mvc.perform(request(validBody()).header("X-Client-Id", "intruso"));      // UNAUTHORIZED
+        send("{ isto nao e json");
+        send("{\"x\":\"" + "a".repeat(16 * 1024) + "\"}");
+        mvc.perform(request(validBody()).header("X-Client-Id", "intruso"));
         rateLimiter.allow = false;
-        send(validBody());                                                       // RATE_LIMITED
+        send(validBody());
 
         assertThat(metrics.recorded).containsExactly(
                 new FakeRequestMetrics.Recorded(Outcome.ACCEPTED, "pix-core"),

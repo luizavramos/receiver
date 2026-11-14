@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.health.contributor.Status;
 
-/** T120 — readiness: o produtor precisa ter os metadados do tópico de comandos. O Redis não entra (fail-open). */
 class KafkaProducerHealthIndicatorTest {
 
     private static final String TOPIC = "transaction-commands.v1";

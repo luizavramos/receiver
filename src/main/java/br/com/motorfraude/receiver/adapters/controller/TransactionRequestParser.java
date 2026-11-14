@@ -10,14 +10,8 @@ import java.util.List;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;
 
-/**
- * Do corpo cru ao comando de domínio. Confere o JSON, o contrato (JSON Schema), o {@code Idempotency-Key} e as
- * invariantes de domínio, devolvendo todos os erros juntos. A forma da mensagem é assunto desta camada; o caso de uso
- * só recebe um comando já válido.
- */
 public class TransactionRequestParser {
 
-    /** Resultado da análise: um comando válido ou a lista de erros. */
     public sealed interface Parsed {
         record Valid(TransactionCommand command) implements Parsed {}
 

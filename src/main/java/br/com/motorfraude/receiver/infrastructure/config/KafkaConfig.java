@@ -16,7 +16,6 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Produtor Kafka nativo e o publicador de comandos (plan 001 §2). */
 @Configuration
 public class KafkaConfig {
 

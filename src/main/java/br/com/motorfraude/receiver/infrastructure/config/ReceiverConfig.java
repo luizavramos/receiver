@@ -21,7 +21,6 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Liga o caso de uso, o adapter REST e o relógio (a única fonte de "agora" do serviço). */
 @Configuration
 public class ReceiverConfig {
 

@@ -9,17 +9,6 @@ import br.com.motorfraude.receiver.application.gateway.TraceContext;
 import br.com.motorfraude.receiver.domain.ReceiveResult;
 import br.com.motorfraude.receiver.domain.TransactionCommand;
 
-/**
- * Decide o desfecho de uma requisição (plan 001 §3). Em duas etapas, porque o limite de taxa precisa vir antes de ler e
- * validar o corpo:
- *
- * <ol>
- *   <li>{@link #admit}: a origem está dentro do limite? Cobrado uma vez por requisição.
- *   <li>{@link #execute}: reserva anti-duplicata em duas fases e publicação confirmada, para um comando já validado.
- * </ol>
- *
- * <p>A garantia de processamento único não está aqui: está no motor (ADR-10). O Redis só protege contra carga.
- */
 public class ReceiveTransactionUseCase {
 
     private final RateLimiter rateLimiter;
@@ -47,7 +36,6 @@ public class ReceiveTransactionUseCase {
                 return new ReceiveResult.InFlight(transactionId);
             }
             case RESERVED, UNAVAILABLE -> {
-                // segue: UNAVAILABLE é fail-open (o motor resolve a duplicata)
             }
         }
 

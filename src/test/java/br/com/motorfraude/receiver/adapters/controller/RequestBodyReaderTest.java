@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-/** Leitura do corpo com limite: nunca carrega um corpo gigante na memória. */
 class RequestBodyReaderTest {
 
     private final RequestBodyReader reader = new RequestBodyReader(16);

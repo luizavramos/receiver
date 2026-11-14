@@ -6,7 +6,6 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** Regra de dependência da Clean Architecture (constituição I e VIII) aplicada ao receiver. */
 class ReceiverArchitectureTest {
 
     private static final String BASE = "br.com.motorfraude.receiver";

@@ -2,7 +2,6 @@ package br.com.motorfraude.receiver.domain;
 
 import java.util.List;
 
-/** Violação de invariante de domínio. Carrega todas as violações, uma por campo, para o 400 listar tudo. */
 public class InvalidTransactionException extends RuntimeException {
 
     private final List<String> violations;

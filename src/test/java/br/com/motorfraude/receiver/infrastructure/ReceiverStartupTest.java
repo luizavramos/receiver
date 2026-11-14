@@ -15,7 +15,6 @@ import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 
-/** T101: o serviço sobe com a configuração local, expõe health (liveness/readiness) e métricas Prometheus. */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ReceiverStartupTest {
 

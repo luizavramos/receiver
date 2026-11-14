@@ -7,10 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-/**
- * Monta as respostas de erro no formato Problem Details (RFC 9457). O corpo é um mapa feito à mão, para não depender
- * da serialização do {@code ProblemDetail} do Spring com o Jackson 3.
- */
 final class ProblemDetails {
 
     private ProblemDetails() {}

@@ -4,7 +4,6 @@ import br.com.motorfraude.receiver.application.gateway.RateLimiter;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Limitador em memória: permite ou nega tudo, e registra quem foi consultado. */
 public class FakeRateLimiter implements RateLimiter {
 
     public boolean allow = true;

@@ -6,15 +6,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Comando de avaliação já aceito pelas invariantes de domínio (spec 001, FR-002). O JSON Schema barra a forma; aqui
- * ficam as regras que dependem de contexto (relógio) ou que reforçam o contrato.
- *
- * <p>O "agora" entra por parâmetro, nunca por chamada direta ao relógio (constituição VIII).
- */
 public record TransactionCommand(EvaluateTransaction payload) {
 
-    /** Tolerância de relógio entre a origem e o receiver. */
     public static final Duration MAX_FUTURE_SKEW = Duration.ofMinutes(5);
 
     private static final String ACCEPTED_CURRENCY = "BRL";

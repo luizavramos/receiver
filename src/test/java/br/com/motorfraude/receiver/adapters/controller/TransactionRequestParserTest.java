@@ -10,7 +10,6 @@ import java.time.ZoneOffset;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** Do corpo cru ao comando de domínio: JSON, contrato (schema), Idempotency-Key e invariantes, com todos os erros juntos. */
 class TransactionRequestParserTest {
 
     private static final Instant NOW = Instant.parse("2026-11-13T21:30:00Z");

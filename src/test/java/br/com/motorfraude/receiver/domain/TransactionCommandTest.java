@@ -13,7 +13,6 @@ import java.time.Instant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T103 — invariantes de domínio que o JSON Schema não cobre ou que reforçam o contrato (spec 001, FR-002). */
 class TransactionCommandTest {
 
     private static final Instant NOW = Instant.parse("2026-11-13T21:30:00Z");

@@ -21,7 +21,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T106 — as saídas do caso de uso, com portas em memória (plan §3, fluxo do caso de uso). */
 class ReceiveTransactionUseCaseTest {
 
     private static final Instant NOW = Instant.parse("2026-11-13T21:30:00Z");

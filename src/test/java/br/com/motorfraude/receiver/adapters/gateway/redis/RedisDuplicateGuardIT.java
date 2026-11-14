@@ -22,7 +22,6 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-/** T113 — o escudo em duas fases contra um Redis real: PENDING → DONE, expiração, concorrência e fail-open. */
 @Testcontainers
 class RedisDuplicateGuardIT {
 
@@ -36,7 +35,6 @@ class RedisDuplicateGuardIT {
 
     @BeforeAll
     static void setUp() throws Exception {
-        // Timeout folgado: o de 5 ms (spec) é exercitado nos testes de pausa, onde a falha é certa
         connection = ResilientRedisConnection.create(REDIS.getHost(), REDIS.getMappedPort(6379), Duration.ofMillis(500));
         guard = new RedisDuplicateGuard(connection, Duration.ofSeconds(5), Duration.ofSeconds(600), RedisDuplicateGuard.Listener.NONE);
         awaitConnected(connection);

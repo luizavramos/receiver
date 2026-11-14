@@ -18,13 +18,6 @@ import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.KafkaException;
 
-/**
- * Publica o comando em {@code transaction-commands.v1} e espera a confirmação (acks=all, produtor idempotente): só
- * retorna quando o Kafka gravou. Chave = accountId, para manter a ordem por conta.
- *
- * <p>Headers (000 plan §3.2): {@code traceparent}, {@code receivedAt}, {@code schemaVersion=1} e
- * {@code commandType=EvaluateTransaction}. Com threads virtuais, bloquear em {@code get()} não ocupa thread de plataforma.
- */
 public class KafkaCommandPublisher implements CommandPublisher {
 
     static final String COMMAND_TYPE = "EvaluateTransaction";

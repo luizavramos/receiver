@@ -6,14 +6,6 @@ import br.com.motorfraude.receiver.adapters.gateway.redis.RedisDuplicateGuard;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 
-/**
- * Métricas do receiver (plan 001 §5). Nomes Micrometer; no Prometheus viram {@code receiver_requests_total},
- * {@code receiver_duplicates_blocked_total}, {@code receiver_in_flight_total}, {@code receiver_redis_failopen_total},
- * {@code receiver_redis_release_failures_total} e {@code receiver_redis_confirm_failures_total}.
- *
- * <p>Os labels têm valores em conjuntos fechados: desfecho (enum), origem (lista autorizada + {@code unknown}) e motivo
- * do fail-open ({@code timeout}/{@code erro}).
- */
 public class ReceiverMetrics implements RequestMetrics, RedisDuplicateGuard.Listener {
 
     private final MeterRegistry registry;

@@ -5,7 +5,6 @@ import br.com.motorfraude.receiver.application.gateway.RateLimiter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Limite de requisições por origem e por instância (spec 001, FR-007). */
 @Configuration
 public class RateLimitConfig {
 

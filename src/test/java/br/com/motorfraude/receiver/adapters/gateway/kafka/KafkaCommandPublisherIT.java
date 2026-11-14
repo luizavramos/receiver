@@ -29,7 +29,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.kafka.KafkaContainer;
 
-/** T110 — o comando chega ao tópico com chave e headers corretos, e o valor respeita o contrato (000 plan §3.3). */
 @Testcontainers
 class KafkaCommandPublisherIT {
 

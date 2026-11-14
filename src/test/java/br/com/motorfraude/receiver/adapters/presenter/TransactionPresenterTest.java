@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
-/** Cada desfecho vira a resposta HTTP certa (status, corpo, Retry-After) e o {@link Outcome} que alimenta a métrica. */
 class TransactionPresenterTest {
 
     private final TransactionPresenter presenter = new TransactionPresenter();

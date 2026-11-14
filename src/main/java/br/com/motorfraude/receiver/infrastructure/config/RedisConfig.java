@@ -7,7 +7,6 @@ import br.com.motorfraude.receiver.infrastructure.observability.ReceiverMetrics;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Redis como escudo de carga (ADR-10): conexão que não impede a subida e guard em duas fases. */
 @Configuration
 public class RedisConfig {
 

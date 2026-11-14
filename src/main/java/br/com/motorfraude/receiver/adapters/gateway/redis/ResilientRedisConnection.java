@@ -12,13 +12,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Conexão com o Redis que nunca impede o serviço de subir: o receiver é fail-open (ADR-10), então Redis fora do ar na
- * partida não pode derrubar a entrada. A primeira conexão (e as novas tentativas, a cada 1 s) acontece em segundo plano;
- * depois de conectada, o Lettuce reconecta sozinho. Enquanto não há conexão, {@link #commands()} devolve nulo.
- *
- * <p>Comandos têm timeout curto e, desconectado, são rejeitados na hora (nada fica enfileirado esperando o Redis).
- */
 public final class ResilientRedisConnection implements AutoCloseable {
 
     private static final long RETRY_MILLIS = 1000;

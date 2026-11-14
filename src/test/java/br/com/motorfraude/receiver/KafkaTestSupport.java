@@ -14,7 +14,6 @@ import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-/** Apoio dos testes de integração: criar o tópico e ler o que foi publicado. */
 public final class KafkaTestSupport {
 
     public static final String TOPIC = "transaction-commands.v1";
@@ -27,7 +26,6 @@ public final class KafkaTestSupport {
         }
     }
 
-    /** Lê o tópico desde o início até ficar {@code quiet} sem mensagens novas. */
     public static List<ConsumerRecord<String, byte[]>> readAll(String bootstrapServers, Duration quiet) {
         var props = Map.<String, Object>of(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,

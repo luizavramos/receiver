@@ -4,10 +4,6 @@ import br.com.motorfraude.commons.tracing.TraceParent;
 import br.com.motorfraude.receiver.application.gateway.TraceContext;
 import java.util.function.Supplier;
 
-/**
- * Decide o contexto de trace gravado no Kafka. O Micrometer Tracing já leu o {@code traceparent} da requisição (ou
- * gerou um): o span ativo é a fonte preferida. Sem span ativo, vale o header recebido, se válido.
- */
 public class TraceContextResolver {
 
     private final Supplier<TraceParent> currentSpan;

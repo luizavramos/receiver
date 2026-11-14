@@ -6,7 +6,6 @@ import br.com.motorfraude.commons.tracing.TraceParent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T112 — de onde vem o contexto de trace que o receiver grava no Kafka. */
 class TraceContextResolverTest {
 
     private static final TraceParent CURRENT =
