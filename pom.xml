@@ -33,7 +33,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- Micrometer Tracing com ponte OpenTelemetry: lê ou gera o traceparent da requisição HTTP -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-opentelemetry</artifactId>
@@ -46,18 +45,15 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
         </dependency>
-        <!-- Rate limit por origem, em memória (plan 001 §2) -->
         <dependency>
             <groupId>com.bucket4j</groupId>
             <artifactId>bucket4j_jdk17-core</artifactId>
         </dependency>
-        <!-- Redis: Lettuce direto (sem Spring Data), para controlar timeout de 5 ms e fail-open -->
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
         </dependency>
 
-        <!-- Testes -->
         <dependency>
             <groupId>br.com.motorfraude</groupId>
             <artifactId>platform-commons</artifactId>
@@ -85,7 +81,6 @@
             <artifactId>assertj-core</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- Testcontainers 2 (BOM do Boot): testes de integração com Kafka real -->
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>testcontainers-kafka</artifactId>
@@ -101,8 +96,6 @@
     <build>
         <plugins>
             <plugin>
-                <!-- O repackage do Boot (fase package) transforma o jar principal em jar executável, com as classes em
-                     BOOT-INF/classes. O Failsafe roda depois e precisa das classes normais. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
@@ -123,9 +116,6 @@
         </plugins>
     </build>
 
-    <!-- Artefatos compartilhados: GitHub Packages (repositórios privados). Leitura e escrita exigem um token
-         configurado no ~/.m2/settings.xml com o id github-motor-fraude (ver README). Sem registry, use ./mvnw install
-         nos repositórios motor-fraude-parent, contracts e platform-commons, nessa ordem. -->
     <repositories>
         <repository>
             <id>github-motor-fraude</id>
