@@ -1,7 +1,7 @@
 package br.com.motorfraude.receiver.fakes;
 
-import br.com.motorfraude.receiver.adapters.in.rest.Outcome;
-import br.com.motorfraude.receiver.adapters.in.rest.RequestMetrics;
+import br.com.motorfraude.receiver.adapters.presenter.Outcome;
+import br.com.motorfraude.receiver.adapters.controller.RequestMetrics;
 import java.util.ArrayList;
 import java.util.List;
 

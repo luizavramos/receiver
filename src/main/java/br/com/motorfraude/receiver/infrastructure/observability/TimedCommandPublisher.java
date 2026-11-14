@@ -1,8 +1,8 @@
 package br.com.motorfraude.receiver.infrastructure.observability;
 
-import br.com.motorfraude.receiver.application.port.out.CommandPublisher;
-import br.com.motorfraude.receiver.application.port.out.PublishFailed;
-import br.com.motorfraude.receiver.application.port.out.TraceContext;
+import br.com.motorfraude.receiver.application.gateway.CommandPublisher;
+import br.com.motorfraude.receiver.application.gateway.PublishFailed;
+import br.com.motorfraude.receiver.application.gateway.TraceContext;
 import br.com.motorfraude.receiver.domain.TransactionCommand;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;

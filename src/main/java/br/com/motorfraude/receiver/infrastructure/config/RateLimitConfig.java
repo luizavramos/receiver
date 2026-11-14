@@ -1,7 +1,7 @@
 package br.com.motorfraude.receiver.infrastructure.config;
 
-import br.com.motorfraude.receiver.adapters.out.ratelimit.Bucket4jRateLimiter;
-import br.com.motorfraude.receiver.application.port.out.RateLimiter;
+import br.com.motorfraude.receiver.adapters.gateway.ratelimit.Bucket4jRateLimiter;
+import br.com.motorfraude.receiver.application.gateway.RateLimiter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

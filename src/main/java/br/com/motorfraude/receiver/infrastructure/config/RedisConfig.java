@@ -1,8 +1,8 @@
 package br.com.motorfraude.receiver.infrastructure.config;
 
-import br.com.motorfraude.receiver.adapters.out.redis.RedisDuplicateGuard;
-import br.com.motorfraude.receiver.adapters.out.redis.ResilientRedisConnection;
-import br.com.motorfraude.receiver.application.port.out.DuplicateGuard;
+import br.com.motorfraude.receiver.adapters.gateway.redis.RedisDuplicateGuard;
+import br.com.motorfraude.receiver.adapters.gateway.redis.ResilientRedisConnection;
+import br.com.motorfraude.receiver.application.gateway.DuplicateGuard;
 import br.com.motorfraude.receiver.infrastructure.observability.ReceiverMetrics;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

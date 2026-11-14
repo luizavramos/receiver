@@ -1,6 +1,6 @@
 package br.com.motorfraude.receiver.fakes;
 
-import br.com.motorfraude.receiver.application.port.out.RateLimiter;
+import br.com.motorfraude.receiver.application.gateway.RateLimiter;
 import java.util.ArrayList;
 import java.util.List;
 

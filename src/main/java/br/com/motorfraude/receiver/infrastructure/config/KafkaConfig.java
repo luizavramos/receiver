@@ -1,7 +1,7 @@
 package br.com.motorfraude.receiver.infrastructure.config;
 
-import br.com.motorfraude.receiver.adapters.out.kafka.KafkaCommandPublisher;
-import br.com.motorfraude.receiver.application.port.out.CommandPublisher;
+import br.com.motorfraude.receiver.adapters.gateway.kafka.KafkaCommandPublisher;
+import br.com.motorfraude.receiver.application.gateway.CommandPublisher;
 import br.com.motorfraude.receiver.infrastructure.observability.KafkaProducerHealthIndicator;
 import br.com.motorfraude.receiver.infrastructure.observability.TimedCommandPublisher;
 import io.micrometer.core.instrument.MeterRegistry;

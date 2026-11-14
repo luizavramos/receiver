@@ -1,8 +1,8 @@
 package br.com.motorfraude.receiver.infrastructure.observability;
 
-import br.com.motorfraude.receiver.adapters.in.rest.Outcome;
-import br.com.motorfraude.receiver.adapters.in.rest.RequestMetrics;
-import br.com.motorfraude.receiver.adapters.out.redis.RedisDuplicateGuard;
+import br.com.motorfraude.receiver.adapters.presenter.Outcome;
+import br.com.motorfraude.receiver.adapters.controller.RequestMetrics;
+import br.com.motorfraude.receiver.adapters.gateway.redis.RedisDuplicateGuard;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 

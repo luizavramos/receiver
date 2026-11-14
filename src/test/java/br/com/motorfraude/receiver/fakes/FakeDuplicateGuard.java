@@ -1,6 +1,6 @@
 package br.com.motorfraude.receiver.fakes;
 
-import br.com.motorfraude.receiver.application.port.out.DuplicateGuard;
+import br.com.motorfraude.receiver.application.gateway.DuplicateGuard;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,11 +1,11 @@
 package br.com.motorfraude.receiver.application;
 
-import br.com.motorfraude.receiver.application.port.out.CommandPublisher;
-import br.com.motorfraude.receiver.application.port.out.DuplicateGuard;
-import br.com.motorfraude.receiver.application.port.out.DuplicateGuard.Reservation;
-import br.com.motorfraude.receiver.application.port.out.PublishFailed;
-import br.com.motorfraude.receiver.application.port.out.RateLimiter;
-import br.com.motorfraude.receiver.application.port.out.TraceContext;
+import br.com.motorfraude.receiver.application.gateway.CommandPublisher;
+import br.com.motorfraude.receiver.application.gateway.DuplicateGuard;
+import br.com.motorfraude.receiver.application.gateway.DuplicateGuard.Reservation;
+import br.com.motorfraude.receiver.application.gateway.PublishFailed;
+import br.com.motorfraude.receiver.application.gateway.RateLimiter;
+import br.com.motorfraude.receiver.application.gateway.TraceContext;
 import br.com.motorfraude.receiver.domain.ReceiveResult;
 import br.com.motorfraude.receiver.domain.TransactionCommand;
 

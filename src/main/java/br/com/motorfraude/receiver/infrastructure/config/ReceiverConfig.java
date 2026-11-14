@@ -2,13 +2,16 @@ package br.com.motorfraude.receiver.infrastructure.config;
 
 import br.com.motorfraude.commons.time.ClockProvider;
 import br.com.motorfraude.commons.tracing.TraceParent;
-import br.com.motorfraude.receiver.adapters.in.rest.AllowedClients;
-import br.com.motorfraude.receiver.adapters.in.rest.RequestValidator;
-import br.com.motorfraude.receiver.adapters.in.rest.TraceContextResolver;
+import br.com.motorfraude.receiver.adapters.controller.AllowedClients;
+import br.com.motorfraude.receiver.adapters.controller.RequestBodyReader;
+import br.com.motorfraude.receiver.adapters.controller.RequestValidator;
+import br.com.motorfraude.receiver.adapters.controller.TraceContextResolver;
+import br.com.motorfraude.receiver.adapters.controller.TransactionRequestParser;
+import br.com.motorfraude.receiver.adapters.presenter.TransactionPresenter;
 import br.com.motorfraude.receiver.application.ReceiveTransactionUseCase;
-import br.com.motorfraude.receiver.application.port.out.CommandPublisher;
-import br.com.motorfraude.receiver.application.port.out.DuplicateGuard;
-import br.com.motorfraude.receiver.application.port.out.RateLimiter;
+import br.com.motorfraude.receiver.application.gateway.CommandPublisher;
+import br.com.motorfraude.receiver.application.gateway.DuplicateGuard;
+import br.com.motorfraude.receiver.application.gateway.RateLimiter;
 import br.com.motorfraude.receiver.infrastructure.observability.ReceiverMetrics;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.tracing.Tracer;
@@ -41,6 +44,21 @@ public class ReceiverConfig {
     @Bean
     RequestValidator requestValidator() {
         return new RequestValidator();
+    }
+
+    @Bean
+    RequestBodyReader requestBodyReader() {
+        return new RequestBodyReader();
+    }
+
+    @Bean
+    TransactionRequestParser transactionRequestParser(RequestValidator validator, Clock clock) {
+        return new TransactionRequestParser(validator, clock);
+    }
+
+    @Bean
+    TransactionPresenter transactionPresenter() {
+        return new TransactionPresenter();
     }
 
     /** O span ativo, lido pelo Micrometer Tracing: ele já leu o {@code traceparent} da requisição ou gerou um. */
