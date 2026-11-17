@@ -119,8 +119,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <!-- Exceção à regra "sem Jackson 2": o swagger-core (springdoc) usa o Jackson 2 para gerar o OpenAPI. O nosso código só
-                     usa o Jackson 3. Mesma exceção do rule-management e do notification-service. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
