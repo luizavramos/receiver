@@ -12,3 +12,17 @@ Java 21, Docker (os testes de integração usam Testcontainers) e os artefatos `
 docker build -t motor-fraude/receiver .
 ```
 Para subir com Kafka, Redis e observabilidade, use o `docker-compose.yml` do repositório https://github.com/luizavramos/fraud-detection-engine (perfil `app`).
+
+## Contrato e configuração
+
+Um único endpoint: `POST /v1/transactions:evaluate`, com o cabeçalho `X-Client-Id` de uma origem permitida (`pix-core`, `ted-core`, `boleto-core` ou `card-core`). Resposta `202` quando o comando foi publicado em `transaction-commands.v1`; request, response e códigos de erro estão em [`docs/endpoints.md`](https://github.com/luizavramos/fraud-detection-engine/blob/main/docs/endpoints.md) do repositório de visão geral. Saúde e métricas: `/actuator/health` e `/actuator/prometheus`.
+
+Os padrões estão em `src/main/resources/application.yml` e qualquer um pode ser trocado por variável de ambiente (por exemplo `RECEIVER_KAFKA_BOOTSTRAP_SERVERS`, `RECEIVER_REDIS_HOST`). Vale destacar:
+
+| Propriedade | Padrão | Para quê |
+|---|---|---|
+| `receiver.rate-limit-per-second` (`RECEIVER_RATE_LIMIT_PER_SECOND`) | `20000` | limite por origem; acima disso responde `429` |
+| `receiver.kafka.bootstrap-servers` | `localhost:9092` | brokers |
+| `receiver.redis.host` / `port` | `localhost` / `6379` | Redis da deduplicação de retries |
+| `receiver.redis.command-timeout` | `5ms` | se o Redis demorar mais, o receiver segue sem a barreira (o motor ainda deduplica) |
+| `receiver.kafka.publish-timeout` | `2500ms` | espera máxima pela confirmação do Kafka antes de falhar a requisição |

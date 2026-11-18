@@ -13,7 +13,7 @@
 
     <artifactId>receiver</artifactId>
     <name>receiver</name>
-    <description>Porta de entrada HTTP: valida, limita, barra retries óbvios e publica o comando no Kafka (spec 001).</description>
+    <description>Porta de entrada HTTP: valida, limita, barra retries óbvios e publica o comando no Kafka.</description>
 
     <dependencies>
         <dependency>
