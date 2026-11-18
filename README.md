@@ -11,4 +11,4 @@ Java 21, Docker (os testes de integração usam Testcontainers) e os artefatos `
 ./mvnw -DskipTests package    # gera target/receiver-0.1.0.jar
 docker build -t motor-fraude/receiver .
 ```
-Para subir com Kafka, Redis e observabilidade, use o `docker-compose.yml` do repositório https://github.com/luizavramos/motor-fraude (perfil `app`).
+Para subir com Kafka, Redis e observabilidade, use o `docker-compose.yml` do repositório https://github.com/luizavramos/fraud-detection-engine (perfil `app`).
